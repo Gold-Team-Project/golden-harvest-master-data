@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import tools.jackson.databind.ObjectMapper;
@@ -26,6 +27,7 @@ public class MasterDataController {
     @PostMapping(
             value = "/{itemCode}",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<?>> appendMasterData(
             @PathVariable String itemCode,
             @RequestPart("request") MasterDataAppendRequest request,
@@ -38,6 +40,7 @@ public class MasterDataController {
     }
 
     @PutMapping("/{itemCode}/status")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<?>> updateMasterDataStatus(
             @PathVariable String itemCode
     ) {
@@ -49,6 +52,7 @@ public class MasterDataController {
             value = "/{itemCode}",
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<?>> updatedMasterData(
             @PathVariable String itemCode,
             @RequestParam("request") String requestJson,
