@@ -4,6 +4,7 @@ import com.teamgold.goldenharvestmasterdata.common.response.ApiResponse;
 import com.teamgold.goldenharvestmasterdata.master.query.service.MasterQueryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -13,6 +14,7 @@ public class MasterQueryController {
     private final MasterQueryService masterQueryService;
 
     @GetMapping("/items")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<?>> getAllMasterData(
             @RequestParam(name = "page", defaultValue = "1") Integer page,
             @RequestParam(name = "size", defaultValue = "20") Integer size,
@@ -28,6 +30,7 @@ public class MasterQueryController {
     }
 
     @GetMapping("/items/{skuNo}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<?>> getDetailMasterData(@PathVariable String skuNo){
 
         return ResponseEntity.ok(ApiResponse.success(masterQueryService.getDetailMasterData(skuNo)));
