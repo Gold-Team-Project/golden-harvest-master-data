@@ -2,7 +2,7 @@ package com.teamgold.goldenharvestmasterdata.master.command.application.service.
 
 import com.teamgold.goldenharvestmasterdata.master.command.application.dto.response.price.PriceResponse;
 import com.teamgold.goldenharvestmasterdata.master.command.application.event.MasterDataEventPublisher;
-import com.teamgold.goldenharvestmasterdata.master.command.application.event.dto.ItemOriginPriceUpdateEvent;
+import com.teamgold.goldenharvestmasterdata.master.command.application.event.dto.ItemOriginPriceUpdatedEvent;
 import com.teamgold.goldenharvestmasterdata.master.command.application.service.price.OriginPriceService;
 import com.teamgold.goldenharvestmasterdata.master.command.domain.master.Sku;
 import com.teamgold.goldenharvestmasterdata.master.command.domain.price.OriginPrice;
@@ -36,7 +36,7 @@ public class OriginPriceServiceImpl implements OriginPriceService {
         originPriceRepository.save(prices);
 
         eventPublisher.publishItemOriginPriceUpdatedEvent(
-                ItemOriginPriceUpdateEvent.builder()
+                ItemOriginPriceUpdatedEvent.builder()
                         .skuNo(sku.getSkuNo())
                         .updatedDate(prices.getCreatedAt())
                         .originPrice(price.getDpr1())
@@ -69,7 +69,7 @@ public class OriginPriceServiceImpl implements OriginPriceService {
 
         prices.forEach(
                 price -> eventPublisher.publishItemOriginPriceUpdatedEvent(
-                        ItemOriginPriceUpdateEvent.builder()
+                        ItemOriginPriceUpdatedEvent.builder()
                                 .originPrice(price.getOriginPrice())
                                 .updatedDate(price.getCreatedAt())
                                 .skuNo(price.getSku().getSkuNo())

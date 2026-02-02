@@ -2,7 +2,7 @@ package com.teamgold.goldenharvestmasterdata.master.command.application.event;
 
 
 import com.teamgold.goldenharvestmasterdata.master.command.application.event.dto.ItemMasterUpdatedEvent;
-import com.teamgold.goldenharvestmasterdata.master.command.application.event.dto.ItemOriginPriceUpdateEvent;
+import com.teamgold.goldenharvestmasterdata.master.command.application.event.dto.ItemOriginPriceUpdatedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -17,7 +17,7 @@ public class MasterDataEventPublisher {
         eventPublisher.publishEvent(event);
     }
 
-    public void publishItemOriginPriceUpdatedEvent(ItemOriginPriceUpdateEvent event) {
+    public void publishItemOriginPriceUpdatedEvent(ItemOriginPriceUpdatedEvent event) {
         eventPublisher.publishEvent(event);
     }
 }
