@@ -1,5 +1,7 @@
 package com.teamgold.goldenharvestmasterdata.common.infra.bootstrap;
 
+import com.teamgold.goldenharvestmasterdata.master.command.application.service.master.MasterDataService;
+import com.teamgold.goldenharvestmasterdata.master.command.application.service.price.OriginPriceService;
 import com.teamgold.goldenharvestmasterdata.master.command.domain.master.Grade;
 import com.teamgold.goldenharvestmasterdata.master.command.infrastucture.mater.GradeRepository;
 import jakarta.transaction.Transactional;
@@ -14,6 +16,8 @@ import java.util.List;
 public class GradeDataInitializer implements CommandLineRunner {
 
     private final GradeRepository gradeRepository;
+    private final MasterDataService masterDataService;
+    private final OriginPriceService originPriceService;
 
     @Override
     @Transactional
@@ -55,6 +59,9 @@ public class GradeDataInitializer implements CommandLineRunner {
         );
 
         gradeRepository.saveAll(grades);
+
+        masterDataService.publishAllMasterDataEvent();
+        originPriceService.publishAllOriginPriceEvent();
     }
 
     private Grade grade(String code, String name, int rank) {
