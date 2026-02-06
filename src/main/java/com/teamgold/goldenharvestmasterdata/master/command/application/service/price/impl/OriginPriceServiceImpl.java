@@ -38,7 +38,6 @@ public class OriginPriceServiceImpl implements OriginPriceService {
         eventPublisher.publishItemOriginPriceUpdatedEvent(
                 ItemOriginPriceUpdatedEvent.builder()
                         .skuNo(sku.getSkuNo())
-                        .updatedDate(prices.getCreatedAt())
                         .originPrice(price.getDpr1())
                         .build()
         );
@@ -70,7 +69,6 @@ public class OriginPriceServiceImpl implements OriginPriceService {
                 price -> eventPublisher.publishItemOriginPriceUpdatedEvent(
                         ItemOriginPriceUpdatedEvent.builder()
                                 .originPrice(price.getOriginPrice())
-                                .updatedDate(price.getCreatedAt())
                                 .skuNo(price.getSku().getSkuNo())
                                 .build()
                 ));
