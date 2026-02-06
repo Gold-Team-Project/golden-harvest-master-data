@@ -59,7 +59,7 @@ public interface MasterMapper {
             """)
     List<MasterDataListResponse> findAllMasterData(
             @Param("itemName") String itemName,
-            @Param("varietyName") String varietyName, // 추가됨
+            @Param("varietyName") String varietyName,
             @Param("itemCode") String itemCode,
             @Param("gradeName") String gradeName,
             @Param("isActive") Boolean isActive,
@@ -77,6 +77,7 @@ public interface MasterMapper {
                     pm.base_unit         AS baseUnit,
                     pm.pack_to_kg        AS packToKg,
                     g.grade_name         AS grade,
+                    pm.is_active         AS status,
                     pm.created_at        AS createdAt,
                     pm.updated_at        AS updatedAt,
                     pm.country           AS country,
@@ -114,5 +115,3 @@ public interface MasterMapper {
     );
 
 }
-
-

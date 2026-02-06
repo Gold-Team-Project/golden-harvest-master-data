@@ -15,6 +15,7 @@ public class MasterDataDetailResponse {
     private String baseUnit; //단위
     private String packToKg; //무게
     private String grade; //등급
+    private String status;
     private LocalDate createdAt; //등록일
     private LocalDate updatedAt; //수정일
     private String country; //원산지
