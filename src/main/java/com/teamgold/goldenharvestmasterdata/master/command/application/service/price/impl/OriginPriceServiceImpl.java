@@ -62,7 +62,6 @@ public class OriginPriceServiceImpl implements OriginPriceService {
         }
     }
 
-    @Transactional
     @Override
     public void publishAllOriginPriceEvent() {
         List<OriginPrice> prices = originPriceRepository.findAllWithSku();

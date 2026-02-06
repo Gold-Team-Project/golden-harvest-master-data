@@ -159,7 +159,6 @@ public class MasterDataServiceImpl implements MasterDataService {
     }
 
     @Override
-    @Transactional
     public void publishAllMasterDataEvent() {
         List<Sku> skus = skuRepository.findAllWithDetails();
 

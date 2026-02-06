@@ -16,8 +16,6 @@ import java.util.List;
 public class GradeDataInitializer implements CommandLineRunner {
 
     private final GradeRepository gradeRepository;
-    private final MasterDataService masterDataService;
-    private final OriginPriceService originPriceService;
 
     @Override
     @Transactional
@@ -59,9 +57,6 @@ public class GradeDataInitializer implements CommandLineRunner {
         );
 
         gradeRepository.saveAll(grades);
-
-        masterDataService.publishAllMasterDataEvent();
-        originPriceService.publishAllOriginPriceEvent();
     }
 
     private Grade grade(String code, String name, int rank) {
